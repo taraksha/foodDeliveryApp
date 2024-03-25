@@ -12,7 +12,8 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
-    "strictPropertyInitialization": false,
+    "strictPropertyInitialization": false,//added by asha
+    "strictNullChecks": false,//added by asha
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",

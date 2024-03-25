@@ -1,7 +1,7 @@
 import { RestaurantService } from './../services/restaurants.service';
-import { Router, RouterModule } from '@angular/router';
-import { Component,OnInit } from '@angular/core';
-import { Restaurantdata } from 'src/app/shared/models/RestaurantData';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { RestaurantData } from 'src/app/shared/models/RestaurantData';
 
 @Component({
   selector: 'app-restaurants',
@@ -11,7 +11,7 @@ import { Restaurantdata } from 'src/app/shared/models/RestaurantData';
 
 export class RestaurantsComponent {
 
-  public restaurantList: Restaurantdata[] ;
+  public restaurantList: RestaurantData[] ;
 
   ngOnInit(){
     this.getAllRestaurants();

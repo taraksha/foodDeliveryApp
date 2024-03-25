@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { API_URL_RL } from 'src/app/constants/url';
 
+
 @Injectable({
   providedIn: 'root'
 })

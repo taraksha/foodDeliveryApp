@@ -1,8 +1,11 @@
-<p>food-catalogue works!</p>
-
 <div class="restaurant-details">
     <div class="restaurant-header">
+        <button class="checkout-button" (click)="backClicked()">
+            <i class="fas fa-shopping-cart"></i>
+            Back
+        </button>
         <h1>{{foodItemResponse.restaurant.name}}</h1>
+        
         <button class="checkout-button" (click)="onCheckOut()">
             <i class="fas fa-shopping-cart"></i>
             Checkout
@@ -10,7 +13,7 @@
     </div>
     <p>{{foodItemResponse.restaurant.description}}</p>
 
-    <h2>Food Menu</h2>
+    <h2>Food Items Menu</h2>
     <div class="food-list">
         <div class="food-item" *ngFor="let food of foodItemResponse.foodItemList">
             <div class="food-details">

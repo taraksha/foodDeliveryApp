@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FoodItemService } from '../services/fooditem.service';
-import { FoodCataloguePageData } from 'src/app/shared/models/foodCataloguePageData';
-import { FoodItemListData } from 'src/app/shared/models/FoodItemListData';
+import { FoodCataloguePage } from 'src/app/shared/models/FoodCataloguePage';
+import { FoodItemList } from 'src/app/shared/models/FoodItemList';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-food-catalogue',
@@ -12,30 +13,27 @@ import { FoodItemListData } from 'src/app/shared/models/FoodItemListData';
 export class FoodCatalogueComponent {
 
   restaurantId: number;
-  foodItemResponse: FoodCataloguePageData;
-  foodItemCart: FoodItemListData[] = [];
-  orderSummary: FoodCataloguePageData;
+  foodItemResponse: FoodCataloguePage; 
+  
+  foodItemCart: FoodItemList[] = [];
+  orderSummary: FoodCataloguePage;
 
 
-  constructor(private route: ActivatedRoute, private foodItemService: FoodItemService, private router: Router) {
+  constructor(private route: ActivatedRoute, private foodItemService: FoodItemService, private router: Router,private _location: Location) {
   }
 
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
-      this.restaurantId = +params.get('id');
+      this.restaurantId = +params.get('id');      
     });
 
     this.getFoodItemsByRestaurant(this.restaurantId);
-    
   }
 
   getFoodItemsByRestaurant(restaurant: number) {
-    this.foodItemService.getFoodItemsByRestaurant(restaurant).subscribe(
-      data => {
-        this.foodItemResponse = data;
-      }
-    )
+    this.foodItemService.getFoodItemsByRestaurant(restaurant)
+                        .subscribe(response => { this.foodItemResponse = response; })
   }
 
   increment(food: any) {
@@ -67,12 +65,15 @@ export class FoodCatalogueComponent {
 
   onCheckOut() {
     this.foodItemCart;
-    // this.orderSummary = {
-    //   foodItemsList: [],
-    //   restaurant: null
-    // }
+     this.orderSummary = {
+       foodItemList: [],
+       restaurant: null
+     }
     this.orderSummary.foodItemList = this.foodItemCart;
     this.orderSummary.restaurant = this.foodItemResponse.restaurant;
     this.router.navigate(['/orderSummary'], { queryParams: { data: JSON.stringify(this.orderSummary) } });
+}
+backClicked() {
+  this._location.back();
 }
 }
