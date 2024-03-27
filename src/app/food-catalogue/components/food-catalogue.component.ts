@@ -16,7 +16,7 @@ export class FoodCatalogueComponent {
   foodItemResponse: FoodCataloguePage; 
   
   foodItemCart: FoodItemList[] = [];
-  orderSummary: FoodCataloguePage;
+  foodCataoguePgforOrder: FoodCataloguePage;
 
 
   constructor(private route: ActivatedRoute, private foodItemService: FoodItemService, private router: Router,private _location: Location) {
@@ -65,13 +65,13 @@ export class FoodCatalogueComponent {
 
   onCheckOut() {
     this.foodItemCart;
-     this.orderSummary = {
+     this.foodCataoguePgforOrder = {
        foodItemList: [],
        restaurant: null
      }
-    this.orderSummary.foodItemList = this.foodItemCart;
-    this.orderSummary.restaurant = this.foodItemResponse.restaurant;
-    this.router.navigate(['/orderSummary'], { queryParams: { data: JSON.stringify(this.orderSummary) } });
+    this.foodCataoguePgforOrder.foodItemList = this.foodItemCart;
+    this.foodCataoguePgforOrder.restaurant = this.foodItemResponse.restaurant;
+    this.router.navigate(['/orderSummary'], { queryParams: { data: JSON.stringify(this.foodCataoguePgforOrder) } });
 }
 backClicked() {
   this._location.back();
